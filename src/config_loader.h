@@ -12,6 +12,13 @@
 #define CFG_STD_SCALE_MULTIPLIER 1.0f
 #define CFG_STD_LED_GPIO_PIN -1
 
+#define CFG_STD_EXT_SHUT_AUTOTIME 5
+#define CFG_STD_EXT_SHUT_MINDEG 0
+#define CFG_STD_EXT_SHUT_MAXDEG 360
+#define CFG_STD_EXT_SHUT_OPENDEG 0
+#define CFG_STD_EXT_SHUT_CLOSEDEG 360
+#define CFG_STD_SERVO_GPIO_PIN -1
+
 #define CFG_FILE "config.txt"   // Dateiname(/Pfad) der cfg Datei
 
 #include <string>
@@ -52,6 +59,13 @@ namespace Beamertool {
         float getScalingMultiplier();
         int getLedGpioPin();
 
+        int getExtShutAutoTime();
+        int getServomindeg();
+        int getServomaxdeg();
+        int getServoopendeg();
+        int getServoclosedeg();
+        int getExtShutGPIO();
+
     private:
         int artnet_universe;        // Art-Net Universe
         int artnet_subnet;          // Art-Net Subnet
@@ -60,6 +74,13 @@ namespace Beamertool {
         int zooming_type;           // Zoom Typ: 1=Windows Beamertool, 2=Kreis
         float scaling_multiplier;   // Multiplikator für die Skalierung
         int led_gpio_pin;           // GPIO Pin der Artnet Receiver Status LED
+
+        int ext_Shut_AutoTime;      // Wert in Sekunden | Zeit die vertreichen soll nachdem der Bildschirm Schwarz ist
+        int Servo_mindeg;           // min Winkel von Servo
+        int Servo_maxdeg;           // max Winkel von Servo
+        int Servo_opendeg;          // Winkel bei geöffnetem Shutter
+        int Servo_closedeg;         // Winkel bei geschlossenem Shutter
+        int ext_Shut_GPIO;          // GPIO Pin für den Servo Motor anzuschließen
     };
 }
 
