@@ -11,6 +11,11 @@
 #define CFG_STD_ZOOMING 1
 #define CFG_STD_SCALE_MULTIPLIER 1.0f
 #define CFG_STD_LED_GPIO_PIN -1
+#define CFG_STD_SERVO_GPIO_PIN -1
+#define CFG_STD_SERVO_MIN 0
+#define CFG_STD_SERVO_MAX 360
+#define CFG_STD_S_OPEN -1
+#define CFG_STD_S_CLOSE -1
 
 #define CFG_FILE "config.txt"   // Dateiname(/Pfad) der cfg Datei
 
@@ -51,6 +56,11 @@ namespace Beamertool {
         int getZoomType();
         float getScalingMultiplier();
         int getLedGpioPin();
+        int getServoGpioPin();
+        int getServoMin();
+        int getServoMax();
+        int getShutterOpen();
+        int getShutterClose();
 
     private:
         int artnet_universe;        // Art-Net Universe
@@ -60,6 +70,11 @@ namespace Beamertool {
         int zooming_type;           // Zoom Typ: 1=Windows Beamertool, 2=Kreis
         float scaling_multiplier;   // Multiplikator für die Skalierung
         int led_gpio_pin;           // GPIO Pin der Artnet Receiver Status LED
+        int Servo_gpio_pin;         // GPIO Pin zur Ensteuerung des Externen Shutter Servos
+        int Servo_min;              // Min Winkel Servo (in ° std:0)
+        int Servo_max;              // Max Winkel Servo (in ° std:360)
+        int S_open;                 // Winkel der bei OPEN eingestellt werden soll
+        int S_close;                // Winkel der bei CLOSE eingestellt werden soll
     };
 }
 

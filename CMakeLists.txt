@@ -21,6 +21,7 @@ set(source_files
   src/artnet_receiver.cpp
   src/config_loader.cpp
   src/console_screen.cpp
+  src/ext_Shutter.cpp
   src/canvas/canvas_manager.cpp
   src/canvas/canvas.cpp
   src/canvas/renderer.cpp
