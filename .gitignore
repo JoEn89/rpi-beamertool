@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 build/
 cmake-build-*/
 .idea/
+=======
+.DS_Store
+>>>>>>> f81ede94273a23f4dd45667c3385763c673341bd

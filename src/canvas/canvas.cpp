@@ -116,7 +116,7 @@ float Canvas::getAlpha() {
     return this->alpha;
 }
 
-int Canvas::getShutterState() {
+int Canvas::getShutterState() {         //Lesen Strobe
     if (this->shutter_speed == 0) {
         return 0;
     } else {

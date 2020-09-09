@@ -1,0 +1,22 @@
+# Laser Sim for Raspberry Pi - config.txt
+
+SUBNET=0        #Art-Net Sub-Net; min:0 max:15 std:0
+UNIVERSE=0      #Art-Net DMX Univerum; min:0 max:15 std:0
+ANZAHL=4        #Anzahl der simulierten Laser; min:0 max:25 std:1
+DMX_START=200   #Startadresse des ersten Lasers, alle weiteren folgen im Abstand von 20 Kanälen; min:1 max:490 std:100
+ZOOM=1          #1 = Original Zoom verhalten | 2 = Zoomen in Kreis; std:1
+#SCAL_MULT=2.0   #Multiplikator Skalierung, '.' als Dezimaltrennzeichen, min: 0.01 max: 9.9
+
+#ACHTUNG!! Die hier eingegebene GPIO Nummer wird nicht weiter auf Gültigkeit geprüft!!!!
+#Übersicht möglicher Eingaben z.B. hier: http://elinux.org/RPi_BCM2835_GPIOs
+#oder hier: http://developer-blog.net/hardware/raspberry-pi-gpio-schnittstelle-teil-1/
+LED_GPIO_PIN=23 #GPIO Pin für eine LED zur Artnet Statusanzeige | -1 = Benutze keine LED
+
+# externer Shutter
+# ----------------------------------------------------------------------------------------
+ext_Shut_AutoTime=5         #Wert in Sekunden | Zeit die vertreichen soll nachdem der Bildschirm Schwarz ist
+ext_Shut_Servo_mindeg=0     #min Winkel von Servo
+ext_Shut_Servo_maxdeg=360   #max Winkel von Servo
+ext_Shut_Servo_opendeg=0    #Winkel bei geschlossenem Shutter
+ext_Shut_Servo_closedeg=90  #Winkel bei geöffnetem Shutter
+ext_Shut_GPIO=1             #GPIO Pin für den Servo Motor anzuschließen

@@ -15,6 +15,7 @@
 #include "artnet_receiver.h"
 #include "canvas/canvas_manager.h"
 #include "canvas/canvas.h"
+#include <iostream>
 
 using namespace std;
 using namespace Beamertool;
@@ -156,30 +157,30 @@ void ArtnetReceiver::updateCanvasValues() {
     vector<Canvas*> canvases = this->screen->getCanvasGroup(this->canvases_id);
 
     for(unsigned int i=0; i<canvases.size(); ++i) {
-        canvases[i]->setContentData(this->dmx512[this->dmx_start + i * 20 - 1 + 0]);
+        canvases[i]->setContentData(this->dmx512[this->dmx_start + i * 20 - 1 + 0]);        // CH1 Texturen
 
-        canvases[i]->setNumber((unsigned int)(this->dmx512[this->dmx_start +i * 20 - 1 + 7] / 4));
-        canvases[i]->setZoom(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 9]) * this->scale_multiplier / 255.f);
+        canvases[i]->setNumber((unsigned int)(this->dmx512[this->dmx_start +i * 20 - 1 + 7] / 4));      //CH8 Prism
+        canvases[i]->setZoom(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 9]) * this->scale_multiplier / 255.f);     // CH10 Zoom
 
-        canvases[i]->setScalingX( (float) this->dmx512[this->dmx_start +i * 20 - 1 + 4] * this->scale_multiplier / 255.f);
-        if (this->dmx512[this->dmx_start +i * 20 - 1 + 5] > 0) {
-            canvases[i]->setScalingY(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 5] / 255.f) / screen->getScreenRatio());
+        canvases[i]->setScalingX( (float) this->dmx512[this->dmx_start +i * 20 - 1 + 4] * this->scale_multiplier / 255.f);      //CH5 Size X
+        if (this->dmx512[this->dmx_start +i * 20 - 1 + 5] > 0) {        // Wenn Wert von Size Y =0 dann proportional scallieren
+            canvases[i]->setScalingY(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 5] / 255.f) / screen->getScreenRatio());       //CH6 Size Y
         } else {
             canvases[i]->setScalingY(-1.0f);
         }
 
-        canvases[i]->setPositionX(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 2] - 128.f) * this->scale_multiplier * 2.f / 256.f);
-        canvases[i]->setPositionY((((float) this->dmx512[this->dmx_start +i * 20 - 1 + 3] - 128.f) * this->scale_multiplier * 2.f / 256.f) / screen->getScreenRatio());
+        canvases[i]->setPositionX(((float) this->dmx512[this->dmx_start +i * 20 - 1 + 2] - 128.f) * this->scale_multiplier * 2.f / 256.f);                                  //CH3 Pos X
+        canvases[i]->setPositionY((((float) this->dmx512[this->dmx_start +i * 20 - 1 + 3] - 128.f) * this->scale_multiplier * 2.f / 256.f) / screen->getScreenRatio());     //CH4 Pos Y
 
-        canvases[i]->setR((float) this->dmx512[this->dmx_start +i * 20 - 1 + 10] / 255.0f);
-        canvases[i]->setG((float) this->dmx512[this->dmx_start +i * 20 - 1 + 11] / 255.0f);
-        canvases[i]->setB((float) this->dmx512[this->dmx_start +i * 20 - 1 + 12] / 255.0f);
-        canvases[i]->setAlpha((float) this->dmx512[this->dmx_start +i * 20 - 1 + 1] / 255.0f);
+        canvases[i]->setR((float) this->dmx512[this->dmx_start +i * 20 - 1 + 10] / 255.0f);         //CH9 Rot
+        canvases[i]->setG((float) this->dmx512[this->dmx_start +i * 20 - 1 + 11] / 255.0f);         //CH10 Grün
+        canvases[i]->setB((float) this->dmx512[this->dmx_start +i * 20 - 1 + 12] / 255.0f);         //CH11 Blau
+        canvases[i]->setAlpha((float) this->dmx512[this->dmx_start +i * 20 - 1 + 1] / 255.0f);      //CH2 Dimmer
 
-        int dmx_rot = this->dmx512[this->dmx_start +i * 20 - 1 + 6];
-        int dmx_speed = this->dmx512[this->dmx_start +i * 20 - 1 + 15];
-        int dmx_rot_all = this->dmx512[this->dmx_start +i * 20 - 1 + 8];
-        int dmx_speed_all = this->dmx512[this->dmx_start +i * 20 - 1 + 16];
+        int dmx_rot = this->dmx512[this->dmx_start +i * 20 - 1 + 6];            //CH7 
+        int dmx_speed = this->dmx512[this->dmx_start +i * 20 - 1 + 15];         //CH16
+        int dmx_rot_all = this->dmx512[this->dmx_start +i * 20 - 1 + 8];        //CH9
+        int dmx_speed_all = this->dmx512[this->dmx_start +i * 20 - 1 + 16];     //CH17
 
         if (dmx_rot > 0) {
             canvases[i]->setRotation( -(((float)dmx_rot) / 256.0f) * 360.0f);
@@ -209,7 +210,8 @@ void ArtnetReceiver::updateCanvasValues() {
             }
         }
 
-        canvases[i]->setShutterSpeed(this->dmx512[this->dmx_start +i * 20 - 1 + 14]);
+        canvases[i]->setShutterSpeed(this->dmx512[this->dmx_start +i * 20 - 1 + 14]);       //CH15 Shutter/Strobe
+        canvases[i]->setextShutter(this->dmx512[this->dmx_start + 17]);                     //CH18 ext. Shutter (nur im ersten Layer vorhanden)
    }
 }
 

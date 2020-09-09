@@ -26,8 +26,13 @@ namespace Beamertool {
         int getExtShutMode();
         void initExtShutter();
         void setExtShutter();
+<<<<<<< HEAD
         int setShutterState();
         
+=======
+        int setShutterOpen();
+        int setShutterClose();
+>>>>>>> f81ede94273a23f4dd45667c3385763c673341bd
         
 
     private:

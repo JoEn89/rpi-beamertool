@@ -146,6 +146,60 @@ void ConfigLoader::parseCleanLine(string &line) {
         }
     }
 
+    // ext_Shut_AutoTime
+    } else if (line.compare(0, 18, "ext_Shut_AutoTime=") == 0) {
+        line.erase(0, 18);
+        this->ext_Shut_AutoTime = stoi(line);
+        if (this->ext_Shut_AutoTime < 0 || this->ext_Shut_AutoTime > 20) {
+            this->ext_Shut_AutoTime = CFG_STD_EXT_SHUT_AUTOTIME;
+        }
+    }
+
+    // ext_Shut_Servo_mindeg
+    } else if (line.compare(0, 22, "ext_Shut_Servo_mindeg=") == 0) {
+        line.erase(0, 22);
+        this->Servo_mindeg = stoi(line);
+        if (this->Servo_mindeg < 0 || this->Servo_mindeg > 360) {
+            this->Servo_mindeg = CFG_STD_EXT_SHUT_MINDEG;
+        }
+    }
+
+    // ext_Shut_Servo_maxdeg
+    } else if (line.compare(0, 22, "ext_Shut_Servo_maxdeg=") == 0) {
+        line.erase(0, 22);
+        this->Servo_maxdeg = stoi(line);
+        if (this->Servo_maxdeg < 0 || this->Servo_maxdeg > 360) {
+            this->Servo_maxdeg = CFG_STD_EXT_SHUT_MAXDEG;
+        }
+    }
+
+        // ext_Shut_Servo_opendeg
+    } else if (line.compare(0, 23, "ext_Shut_Servo_opendeg=") == 0) {
+        line.erase(0, 23);
+        this->Servo_opendeg = stoi(line);
+        if (this->Servo_opendeg < 0 || this->Servo_opendeg > 360) {
+            this->Servo_opendeg = CFG_STD_EXT_SHUT_OPENDEG;
+        }
+    }
+
+        // ext_Shut_Servo_closedeg
+    } else if (line.compare(0, 24, "ext_Shut_Servo_closedeg=") == 0) {
+        line.erase(0, 24);
+        this->Servo_closedeg = stoi(line);
+        if (this->Servo_closedeg < 0 || this->Servo_closedeg > 360) {
+            this->Servo_closedeg = CFG_STD_EXT_SHUT_CLOSEDEG;
+        }
+    }
+
+        // ext_Shut_GPIO
+    } else if (line.compare(0, 14, "ext_Shut_GPIO=") == 0) {
+        line.erase(0, 14);
+        this->ext_Shut_GPIO = stoi(line);
+        if (this->ext_Shut_GPIO < 0 || this->ext_Shut_GPIO > 30) {
+            this->ext_Shut_GPIO = CFG_STD_SERVO_GPIO_PIN;
+        }
+    }
+
     // plausibility test - passt DMX_START und Anzahl zusammen?
     if ((this->lasersim_dmx_start + 20 * this->lasersim_num) > 512) {
         this->lasersim_dmx_start = CFG_STD_LASERSIM_DMX_START;
@@ -179,6 +233,26 @@ float ConfigLoader::getScalingMultiplier() {
 
 int ConfigLoader::getLedGpioPin() {
     return this->led_gpio_pin;
+} 
+
+int ConfigLoader::getExtShutAutoTime() {
+    return this->ext_Shut_AutoTime;
+}
+
+int ConfigLoader::getServomindeg() {
+    return this->Servo_mindeg;
+}
+
+int ConfigLoader::getServomaxdeg() {
+    return this->Servo_maxdeg;
+}
+
+int ConfigLoader::getServoopendeg() {
+    return this->Servo_opendeg;
+}
+
+int ConfigLoader::getServoclosedeg() {
+    return this->Servo_closedeg;
 }
 
 int ConfigLoader::getServoGpioPin() {
