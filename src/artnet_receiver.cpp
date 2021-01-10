@@ -156,6 +156,8 @@ void ArtnetReceiver::updateCanvasValues() {
 
     vector<Canvas*> canvases = this->screen->getCanvasGroup(this->canvases_id);
 
+    setextShutter(dmx512[dmx_start + 17]);                     //CH18 ext. Shutter (nur im ersten Layer vorhanden)
+    
     for(unsigned int i=0; i<canvases.size(); ++i) {
         canvases[i]->setContentData(this->dmx512[this->dmx_start + i * 20 - 1 + 0]);        // CH1 Texturen
 
@@ -211,7 +213,7 @@ void ArtnetReceiver::updateCanvasValues() {
         }
 
         canvases[i]->setShutterSpeed(this->dmx512[this->dmx_start +i * 20 - 1 + 14]);       //CH15 Shutter/Strobe
-        canvases[i]->setextShutter(this->dmx512[this->dmx_start + 17]);                     //CH18 ext. Shutter (nur im ersten Layer vorhanden)
+       // canvases[i]->setextShutter(this->dmx512[this->dmx_start + 17]);                     //CH18 ext. Shutter (nur im ersten Layer vorhanden)
    }
 }
 

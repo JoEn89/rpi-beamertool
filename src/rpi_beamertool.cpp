@@ -11,6 +11,7 @@
 #include "config_loader.h"
 #include "canvas/canvas_manager.h"
 #include "artnet_receiver.h"
+#include "ext_Shutter.h"
 
 using namespace std;
 using namespace Beamertool;
@@ -53,6 +54,9 @@ int main (int argc, char **argv) {
     int lasers_id = screen->generateCanvasGroup(config->getLasersimNum(), "CONTENT_TEXTURE_256");
     ArtnetReceiver * dmxr = new ArtnetReceiver(screen, lasers_id, config->getArtnetUniverse(), config->getArtnetSubnet(), config->getLasersimDMXStart(), config->getScalingMultiplier(), config->getLedGpioPin());
 
+    // Init Ext. Shutter
+    ExtShutter * eshutter = new ExtShutter(dmxr->getextShutter(),config->getServoGpioPin(),config->getServomindeg(),config->getServomaxdeg(),config->getServoopendeg(),config->getServoclosedeg(),config->getExtShutAutoTime());
+
     c_screen->print("Init Done! Starting main loop... Press 'q' to quit! \n");
 
     // Main Loop
@@ -66,5 +70,6 @@ int main (int argc, char **argv) {
     delete screen;
     delete config;
     delete c_screen;
+    delete eshutter;
     return 0;
 }

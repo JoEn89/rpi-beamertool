@@ -44,6 +44,6 @@ if ($action == "reboot") {
 } elseif ($action == "shutdown") {
     shell_exec("sudo /sbin/shutdown -h now");
 } elseif ($action == "restart") {
-    system("sudo /opt/rpi-beamertool/rpi-bt-restart.sh > /dev/null &");
+    system("sudo /opt/rpi-beamertool/tools/rpi-bt-restart.sh > /dev/null &");
 }
 ?>

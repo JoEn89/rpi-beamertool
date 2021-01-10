@@ -43,6 +43,13 @@ namespace Beamertool {
          */
         ~ArtnetReceiver();
 
+        /**
+         * 
+         */
+        int ArtnetReceiver::getextShutter() {
+            return valsh;
+        }
+
     private:
         /**
          * net listener function
@@ -111,6 +118,12 @@ namespace Beamertool {
          */
         void quitLED();
 
+        /**
+         * set the DMX Value for Ext-Shutter
+         * @param valsh DWC Wert
+         */
+        void setextShutter(int valsh);
+
 
         std::thread net_listener_thread;            // net listener thread
         bool quit;                                  // shall quit status
@@ -132,6 +145,7 @@ namespace Beamertool {
         int led_status;                             // LED status (on/off)
         int led_packet_counter;                     // packets received since last LED change
         bool is_root;                               // program runs with root privileges flag
+        int valsh;                                  // DMX Wert für Ext Shutter
     };
 }
 

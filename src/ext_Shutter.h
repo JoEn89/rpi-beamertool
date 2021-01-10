@@ -1,12 +1,11 @@
 // ext_Shutter.h
 
 #include <string>
-#include "artnet_reciver.h"
+
 
 #ifndef ExtShutter_h
 #define ExtShutter_h
 
-#define 
 
 namespace Beamertool {
 
@@ -15,8 +14,14 @@ namespace Beamertool {
     public:
         /**
          * standard constructor
+         * @param dmxval DMX Wert
+         * @param GPIO  GPIO Pin für den Servo Motor anzuschließen
+         * @param mindeg    min Winkel von Servo
+         * @param maxdeg    max Winkel von Servo
+         * @param opendeg   Winkel bei geöffnetem Shutter
+         * @param closedeg  Winkel bei geschlossenem Shutter
          */
-        ExtShutter();
+        ExtShutter(int dmxval, int GPIO, int mindeg, int maxdeg, int opendeg, int closedeg, int AutoTime);
         
         ~ExtShutter();      //Destruktor
 
@@ -26,13 +31,8 @@ namespace Beamertool {
         int getExtShutMode();
         void initExtShutter();
         void setExtShutter();
-<<<<<<< HEAD
         int setShutterState();
         
-=======
-        int setShutterOpen();
-        int setShutterClose();
->>>>>>> f81ede94273a23f4dd45667c3385763c673341bd
         
 
     private:

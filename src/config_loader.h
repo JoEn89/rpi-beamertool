@@ -11,11 +11,6 @@
 #define CFG_STD_ZOOMING 1
 #define CFG_STD_SCALE_MULTIPLIER 1.0f
 #define CFG_STD_LED_GPIO_PIN -1
-#define CFG_STD_SERVO_GPIO_PIN -1
-#define CFG_STD_SERVO_MIN 0
-#define CFG_STD_SERVO_MAX 360
-#define CFG_STD_S_OPEN -1
-#define CFG_STD_S_CLOSE -1
 
 #define CFG_STD_EXT_SHUT_AUTOTIME 5
 #define CFG_STD_EXT_SHUT_MINDEG 0
@@ -64,17 +59,12 @@ namespace Beamertool {
         float getScalingMultiplier();
         int getLedGpioPin();
         int getServoGpioPin();
-        int getServoMin();
-        int getServoMax();
-        int getShutterOpen();
-        int getShutterClose();
 
         int getExtShutAutoTime();
         int getServomindeg();
         int getServomaxdeg();
         int getServoopendeg();
         int getServoclosedeg();
-        int getExtShutGPIO();
 
     private:
         int artnet_universe;        // Art-Net Universe
@@ -84,21 +74,12 @@ namespace Beamertool {
         int zooming_type;           // Zoom Typ: 1=Windows Beamertool, 2=Kreis
         float scaling_multiplier;   // Multiplikator für die Skalierung
         int led_gpio_pin;           // GPIO Pin der Artnet Receiver Status LED
-<<<<<<< HEAD
-        int Servo_gpio_pin;         // GPIO Pin zur Ensteuerung des Externen Shutter Servos
-        int Servo_min;              // Min Winkel Servo (in ° std:0)
-        int Servo_max;              // Max Winkel Servo (in ° std:360)
-        int S_open;                 // Winkel der bei OPEN eingestellt werden soll
-        int S_close;                // Winkel der bei CLOSE eingestellt werden soll
-=======
-
-        int ext_Shut_AutoTime;      // Wert in Sekunden | Zeit die vertreichen soll nachdem der Bildschirm Schwarz ist
-        int Servo_mindeg;           // min Winkel von Servo
-        int Servo_maxdeg;           // max Winkel von Servo
-        int Servo_opendeg;          // Winkel bei geöffnetem Shutter
-        int Servo_closedeg;         // Winkel bei geschlossenem Shutter
-        int ext_Shut_GPIO;          // GPIO Pin für den Servo Motor anzuschließen
->>>>>>> f81ede94273a23f4dd45667c3385763c673341bd
+        int ext_Shut_GPIO;         // GPIO Pin zur Ensteuerung des Externen Shutter Servos
+        int Servo_mindeg;           // Min Winkel Servo (in ° std:0)
+        int Servo_maxdeg;           // Max Winkel Servo (in ° std:360)
+        int Servo_opendeg;          // Winkel der bei OPEN eingestellt werden soll
+        int Servo_closedeg;         // Winkel der bei CLOSE eingestellt werden soll
+        int ext_Shut_AutoTime;      // Auto Time
     };
 }
 
